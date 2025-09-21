@@ -1,6 +1,19 @@
-# 1. install python 3.9 for pox
+# 1. ssh (Enable SSH keepalive to prevent automatic disconnection during idle sessions)
 
-1. 
+```
+sudo nano /etc/ssh/sshd_config
+```
+```
+ClientAliveInterval 120      
+ClientAliveCountMax 5       
+```
+```
+sudo service ssh restart
+```
+
+# 2. install python 3.9 for pox
+
+### 1. 
 
 ```
 sudo apt update
@@ -11,42 +24,46 @@ sudo apt install python3.9 python3.9-dev python3.9-venv
 python3.9 --version
 ```
 
-2. 
+### 2. 
+```
+mkdir SDN-Adaptive-Routing
+```
+```
+cd SDN-Adaptive-Routing
+```
 
 ```
-python3.9 -m venv pox-env
-source pox-env/bin/activate
+python3.9 -m venv env
+source env/bin/activate
 ```
 
-# 2. install mininet
+# 3. install mininet
 
 ```
 sudo apt install mininet git
 ```
+```
+mn --version
+```
+```
+pip install networkx
+```
 
-# 3. install pox
+# 4. install pox
 
 ```
 git clone https://github.com/noxrepo/pox.git
 ```
 
-# 4. ssh (Enable SSH keepalive to prevent automatic disconnection during idle sessions)
-
+# 5. requirements.txt:
 ```
-sudo nano /etc/ssh/sshd_config
+touch requirements.txt
 ```
-
 ```
-ClientAliveInterval 60      
-ClientAliveCountMax 3       
+pip freeze > requirements.txt
 ```
-
 ```
-sudo systemctl restart sshd
+cat requirements.txt
 ```
 
-or 
 
-```
-sudo service ssh restart
-```
